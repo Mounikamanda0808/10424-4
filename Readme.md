@@ -10,9 +10,17 @@
 >>http status codes(browser)>>mozilla
 >> to run this in our system open terminal npm i command has to be run
 
-HTTP Methods:
+## HTTP Methods:
 >>GET : Getting the data
 >>POST : sending data
 >>DELETE : Deleting the data
 >>PATCH : update certaion fields
 >>PUT : full update
+
+>>git checkout -b "d1"
+>>git add .
+>>git commit -m "d1"
+>>git push
+>> git push --set-upstream origin d1(this we get from git push command)
+>>res.writeHead(200,{"content-type":"text/html"});
+    res.write("<h1>Hello MounikaManda0808</h1>");
