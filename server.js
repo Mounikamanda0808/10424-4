@@ -1,9 +1,38 @@
 const http = require("http");
 
 const port = 8081;
+
+const todolist =["mounika","manojkumar","srilatha","ilaiah"];
 http.createServer((req,res)=>{
-    res.writeHead(200,{"context-Type": "text/html"});
-    res.write("<h1>Hello MounikaManda0808</h1>")
+    const {method,url} =req;
+    // console.log(method,url);
+
+    if(url === "/todos"){
+        if(method === "GET"){
+            res.writeHead(200);
+            res.write(todolist.toString());
+        }else if(method === "POST"){
+            let body ="";
+            req.on("error",(err)=>{
+                console.error(err)
+            }).on("data",(chunk)=>{
+                body == chunk;
+                console.log("chunk:",chunk)
+            }).on("end",()=>{
+                body = JSON.parse(body);
+                console.log("body: ",body);
+                let newtodo =todolist;
+                newtodo.push(body.item)
+            })
+
+        }
+        else{
+            res.writeHead(501);
+        }
+    }
+    else if(url === "/"){
+
+    }
     res.end();
 })
 .listen(port, ()=>{
