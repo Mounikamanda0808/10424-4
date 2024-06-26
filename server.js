@@ -1,40 +1,21 @@
-const http = require("http");
+const express = require("express");
+
+//initialization
+const app = express();
+
+
+app.user(express.json());
 
 const port = 8081;
 
-const todolist =["mounika","manojkumar","srilatha","ilaiah"];
-http.createServer((req,res)=>{
-    const {method,url} =req;
-    // console.log(method,url);
+const toDolist = ["Mounika","Manoj","Ilaiah","Srilatha"];
+http://localhost:8081/todos
 
-    if(url === "/todos"){
-        if(method === "GET"){
-            res.writeHead(200);
-            res.write(todolist.toString());
-        }else if(method === "POST"){
-            let body ="";
-            req.on("error",(err)=>{
-                console.error(err)
-            }).on("data",(chunk)=>{
-                body == chunk;
-                console.log("chunk:",chunk)
-            }).on("end",()=>{
-                body = JSON.parse(body);
-                console.log("body: ",body);
-                let newtodo =todolist;
-                newtodo.push(body.item)
-            })
+app.get("/todos",(req,res)=>{
+    res.status(200).send(toDolist);
 
-        }
-        else{
-            res.writeHead(501);
-        }
-    }
-    else if(url === "/"){
-
-    }
-    res.end();
 })
-.listen(port, ()=>{
-    console.log(`NodeJs Server is up and running successfully on port ${port}`)
+
+app.listen(port, () =>{
+    console.log(`ExpressJS Server is up and running successfully on port ${port}`)
 })
